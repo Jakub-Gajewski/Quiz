@@ -5,13 +5,15 @@ plugins {
 android {
     namespace = "com.example.quiz"
     compileSdk {
-        version = release(37)
+        version = release(36) {
+            minorApiLevel = 1
+        }
     }
 
     defaultConfig {
         applicationId = "com.example.quiz"
-        minSdk = 24
-        targetSdk = 37
+        minSdk = 25
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -20,9 +22,11 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
